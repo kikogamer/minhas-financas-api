@@ -42,7 +42,12 @@ group :development do
 end
 
 group :test do
+  # Generate record based in a model
   gem 'factory_bot_rails'
+  # Fakker datas
+  gem 'ffaker'
+  # Clean db after test
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
