@@ -20,6 +20,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 # Use to protect API from external calls
 gem 'rack-attack'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+# jwt authentication
+gem 'knock'
 
 group :development, :test do
   # Test framework

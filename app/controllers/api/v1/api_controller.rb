@@ -4,7 +4,7 @@ module Api
   module V1
     # ApiController
     class ApiController < ApplicationController
-      def initialize; end
+      include Knock::Authenticable
     end
   end
 end
