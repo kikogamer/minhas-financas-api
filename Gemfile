@@ -43,6 +43,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # ruby static code analyzer
   gem 'rubocop', require: false
+  # deploy gems
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano3-puma', require: false
+  gem 'capistrano-rails', '~> 1.3', require: false
+  gem 'capistrano-rvm', require: false
 end
 
 group :test do
