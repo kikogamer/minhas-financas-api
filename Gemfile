@@ -59,6 +59,8 @@ group :test do
   gem 'ffaker'
   # Clean db after test
   gem 'database_cleaner'
+  # code coverage
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

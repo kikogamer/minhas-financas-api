@@ -15,7 +15,7 @@ RSpec.describe('Users', type: :request) do
 
       it 'User was create on database' do
         expect do
-          post '/api/v1/users/', params: { user: user_params }
+          post '/api/v1/users/', params: { user: attributes_for(:user) }
         end.to(change { User.count }.by(1))
       end
 

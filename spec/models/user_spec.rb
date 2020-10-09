@@ -33,4 +33,17 @@ RSpec.describe User, type: :model do
     user_params[:password] = nil
     expect(User.create(user_params)).to_not be_valid
   end
+
+  it 'is invalid with invalid email format' do
+    user_params[:email] = FFaker::Lorem.word
+    expect(User.create(user_params)).to_not be_valid
+  end
+
+  it 'is invalid with duplicated email' do
+    other_user_params = attributes_for(:user)
+    other_user_params[:email] = user_params[:email]
+
+    User.create(user_params)
+    expect(User.create(other_user_params)).to_not be_valid
+  end
 end
