@@ -29,6 +29,9 @@ module MinhasFinancasApi
 
     config.middleware.use Rack::Attack
 
+    config.i18n.default_locale = :"pt-BR"
+    config.time_zone = 'Brasilia'
+
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
       if File.exist?(env_file)
