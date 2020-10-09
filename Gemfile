@@ -24,6 +24,8 @@ gem 'rack-attack'
 gem 'bcrypt', '~> 3.1.7'
 # jwt authentication
 gem 'knock'
+# Serializer json
+gem 'active_model_serializers'
 
 group :development, :test do
   # Test framework
