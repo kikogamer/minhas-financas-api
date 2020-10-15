@@ -44,7 +44,8 @@ jobs:
       
       - name: Run Rubocop
         run: bundle exec rubocop
-        env: RAILS_ENV: development
+        env: 
+          RAILS_ENV: development
 
       - name: Run RSpec
         run: COVERAGE=true bundle exec rspec  --require rails_helper
