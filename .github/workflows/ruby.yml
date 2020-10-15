@@ -43,7 +43,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
       
       - name: Run Rubocop
-        run: bundle exec rubocop --cache false
+        run: bundle exec rubocop -C false
         env: 
           RAILS_ENV: development
 
