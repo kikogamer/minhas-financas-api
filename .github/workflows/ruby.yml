@@ -34,7 +34,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           
       - name: Allow execute permission in rails files
-        run: chmod +x bin/rails
+        run: chmod +x bin/rails bin/rake bin/setup
         
       - name: Setup Database
         run: |
