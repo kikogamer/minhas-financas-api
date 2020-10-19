@@ -46,4 +46,9 @@ RSpec.describe User, type: :model do
     User.create(user_params)
     expect(User.create(other_user_params)).to_not be_valid
   end
+
+  it 'is invalid when password_confirmation does not match password' do
+    user_params[:password_confirmation] = FFaker::Internet.password
+    expect(User.create(user_params)).to_not be_valid
+  end
 end
