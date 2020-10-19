@@ -20,7 +20,7 @@ RSpec.describe('Users', type: :request) do
       end
 
       it 'User data was return correctly' do
-        expect(json).to(include_json(user_params.except(:password, :password_confirmation)))
+        expect(json['jwt']).not_to be_nil
       end
     end
 
