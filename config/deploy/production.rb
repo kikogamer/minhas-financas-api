@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-set :branch, 'develop'
+set :branch, 'master'
 set :server_address, '64.227.63.120'
 
 # ask(:password, nil, echo: false)
