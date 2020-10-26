@@ -51,6 +51,9 @@ jobs:
         env: 
           RAILS_ENV: development
 
+      - name: Brakeman
+        uses: devmasx/brakeman-linter-action@v1.0.0
+      
       - name: Run RSpec
         run: COVERAGE=true bundle exec rspec  --require rails_helper
         env:
