@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 # Serializer json
 gem 'active_model_serializers'
+gem 'rollbar'
 
 group :development, :test do
   # Test framework
@@ -45,6 +46,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # ruby static code analyzer
   gem 'rubocop', require: false
+  # check for security vulnerabilities
+  gem 'brakeman'
   # deploy gems
   gem 'capistrano', '~> 3.10', require: false
   gem 'capistrano3-puma', require: false

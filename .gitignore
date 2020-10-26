@@ -28,3 +28,5 @@
 local_env.yml
 
 coverage/*
+
+brakeman.html
