@@ -53,6 +53,8 @@ jobs:
 
       - name: Brakeman
         uses: devmasx/brakeman-linter-action@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
       - name: Run RSpec
         run: COVERAGE=true bundle exec rspec  --require rails_helper
