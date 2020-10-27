@@ -17,6 +17,7 @@ set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
 set :puma_access_log, "#{shared_path}/log/puma_access.log"
 set :puma_error_log, "#{shared_path}/log/puma_error.log"
+set :puma_restart_command, 'bundle exec --keep-file-descriptors puma'
 
 set :nginx_sites_available_path, '/etc/nginx/sites-available'
 set :nginx_sites_enabled_path, '/etc/nginx/sites-enabled'
