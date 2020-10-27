@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 # Serializer json
 gem 'active_model_serializers'
+gem 'rollbar'
 
 group :development, :test do
   # Test framework
