@@ -46,6 +46,8 @@ RSpec.configure do |config|
 
   # Custom json helpers
   config.include Requests::JsonHelpers, type: :request
+  # Custom Header helpers
+  config.include Requests::HeaderHelpers, type: :request
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
