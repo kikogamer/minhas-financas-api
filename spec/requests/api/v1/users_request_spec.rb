@@ -4,11 +4,11 @@ require('rails_helper')
 
 RSpec.describe('Users', type: :request) do
   describe 'GET /api/v1/users/current' do
-    context 'Unauthenticated' do
+    context 'Invalid User Token' do
       it_behaves_like :deny_without_authorization, :get, '/api/v1/users/current'
     end
 
-    context 'Authenticated' do
+    context 'Valid User Token' do
       let(:user) { create(:user) }
 
       before { get '/api/v1/users/current', headers: header_with_authentication(user) }
