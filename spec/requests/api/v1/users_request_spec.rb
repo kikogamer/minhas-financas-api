@@ -3,6 +3,24 @@
 require('rails_helper')
 
 RSpec.describe('Users', type: :request) do
+  describe 'GET /api/v1/users/current' do
+    context 'Unauthenticated' do
+      it_behaves_like :deny_without_authorization, :get, '/api/v1/users/current'
+    end
+
+    context 'Authenticated' do
+      let(:user) { create(:user) }
+
+      before { get '/api/v1/users/current', headers: header_with_authentication(user) }
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'returns valid user in json' do
+        expect(json).to eql(serialized(Api::V1::UserSerializer, user))
+      end
+    end
+  end
+
   describe 'POST /api/v1/users' do
     context 'Valid Params' do
       let(:user_params) { attributes_for(:user) }
