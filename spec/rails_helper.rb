@@ -44,10 +44,12 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  # Custom json helpers
-  config.include Requests::JsonHelpers, type: :request
   # Custom Header helpers
   config.include Requests::HeaderHelpers, type: :request
+  # Custom json helpers
+  config.include Requests::JsonHelpers, type: :request
+  # Custom Serializer helpers
+  config.include Requests::SerializerHelpers, type: :request
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
