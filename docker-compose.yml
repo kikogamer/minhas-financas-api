@@ -18,6 +18,8 @@ services:
     volumes:
       - .:/minhas-financas-api
       - app-gems:/app-gems
+    environment:
+      RAILS_ENV: development
 
 volumes:
   postgres:
