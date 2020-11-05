@@ -24,17 +24,23 @@ module Api
       end
 
       def destroy
+        render json: { errors: @user.errors }, status: :unprocessable_entity unless destroy_confirmation?
         @user.destroy
       end
 
       private
+
+      def destroy_confirmation?
+        @user.email.eql?(user_params[:email_confirmation]) &&
+          @user.authenticate(user_params[:password_confirmation])
+      end
 
       def set_user
         @user = User.find(params[:id])
       end
 
       def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :email_confirmation)
       end
     end
   end
