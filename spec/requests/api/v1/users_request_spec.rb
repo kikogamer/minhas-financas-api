@@ -69,15 +69,43 @@ RSpec.describe('Users', type: :request) do
         context "Resource's Owner" do
           before { @user = create(:user) }
 
-          it 'Returns status no_content (204)' do
-            delete "/api/v1/users/#{@user.id}", headers: header_with_authentication(@user)
-            expect(response).to have_http_status(:no_content)
+          let(:user_params) do
+            { email_confirmation: @user.email, password_confirmation: @user.password }
           end
 
-          it 'User was delete on database' do
-            expect do
-              delete "/api/v1/users/#{@user.id}", headers: header_with_authentication(@user)
-            end.to change { User.count }.by(-1)
+          context 'Valid Params' do
+            it 'Returns status no_content (204)' do
+              delete "/api/v1/users/#{@user.id}",
+                     params: { user: user_params },
+                     headers: header_with_authentication(@user)
+              expect(response).to have_http_status(:no_content)
+            end
+
+            it 'User was delete on database' do
+              expect do
+                delete "/api/v1/users/#{@user.id}",
+                       params: { user: user_params },
+                       headers: header_with_authentication(@user)
+              end.to change { User.count }.by(-1)
+            end
+          end
+
+          context 'Invalid Params' do
+            it 'is invalid with incorrect email confirmation' do
+              user_params[:email_confirmation] = FFaker::Internet.email
+              delete "/api/v1/users/#{@user.id}",
+                     params: { user: user_params },
+                     headers: header_with_authentication(@user)
+              expect(response).to have_http_status(:unprocessable_entity)
+            end
+
+            it 'is invalid with incorrect password confirmation' do
+              user_params[:password_confirmation] = FFaker::Internet.password
+              delete "/api/v1/users/#{@user.id}",
+                     params: { user: user_params },
+                     headers: header_with_authentication(@user)
+              expect(response).to have_http_status(:unprocessable_entity)
+            end
           end
         end
 
