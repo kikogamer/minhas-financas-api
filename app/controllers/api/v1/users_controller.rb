@@ -24,8 +24,11 @@ module Api
       end
 
       def destroy
-        render json: { errors: @user.errors }, status: :unprocessable_entity unless destroy_confirmation?
-        @user.destroy
+        if destroy_confirmation?
+          @user.destroy
+        else
+          render json: { errors: ['Invalid username or password'] }, status: :unprocessable_entity
+        end
       end
 
       private
