@@ -91,20 +91,42 @@ RSpec.describe('Users', type: :request) do
           end
 
           context 'Invalid Params' do
-            it 'is invalid with incorrect email confirmation' do
-              user_params[:email_confirmation] = FFaker::Internet.email
-              delete "/api/v1/users/#{@user.id}",
-                     params: { user: user_params },
-                     headers: header_with_authentication(@user)
-              expect(response).to have_http_status(:unprocessable_entity)
+            context 'Incorrect email confirmation' do
+              before { user_params[:email_confirmation] = FFaker::Internet.email }
+
+              it 'Returns status unprocessable entity (422)' do
+                delete "/api/v1/users/#{@user.id}",
+                       params: { user: user_params },
+                       headers: header_with_authentication(@user)
+                expect(response).to have_http_status(:unprocessable_entity)
+              end
+
+              it "The user won't be deleted from the database" do
+                expect do
+                  delete "/api/v1/users/#{@user.id}",
+                         params: { user: user_params },
+                         headers: header_with_authentication(@user)
+                end.to change { User.count }.by(0)
+              end
             end
 
-            it 'is invalid with incorrect password confirmation' do
-              user_params[:password_confirmation] = FFaker::Internet.password
-              delete "/api/v1/users/#{@user.id}",
-                     params: { user: user_params },
-                     headers: header_with_authentication(@user)
-              expect(response).to have_http_status(:unprocessable_entity)
+            context 'Incorrect password confirmation' do
+              before { user_params[:password_confirmation] = FFaker::Internet.password }
+
+              it 'Returns status unprocessable entity (422)' do
+                delete "/api/v1/users/#{@user.id}",
+                       params: { user: user_params },
+                       headers: header_with_authentication(@user)
+                expect(response).to have_http_status(:unprocessable_entity)
+              end
+
+              it "The user won't be deleted from the database" do
+                expect do
+                  delete "/api/v1/users/#{@user.id}",
+                         params: { user: user_params },
+                         headers: header_with_authentication(@user)
+                end.to change { User.count }.by(0)
+              end
             end
           end
         end
