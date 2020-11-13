@@ -3,6 +3,7 @@ AllCops:
 
 Metrics/BlockLength:
   Exclude:
+    - 'config/environments/*.rb'
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
