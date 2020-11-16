@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+require 'constraints/admin_constraint'
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
@@ -9,4 +12,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 end

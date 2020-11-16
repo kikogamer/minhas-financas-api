@@ -28,6 +28,10 @@ gem 'active_model_serializers'
 gem 'rollbar'
 # Authorization
 gem 'cancancan'
+# key value database
+gem 'redis'
+# background processing
+gem 'sidekiq'
 
 group :development, :test do
   # Test framework

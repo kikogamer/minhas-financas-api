@@ -13,4 +13,8 @@ class User < ApplicationRecord
                       confirmation: true
 
   validates_presence_of :name, :password_confirmation
+
+  def admin?
+    ENV.fetch('RAILS_ENV', 'development') == 'development'
+  end
 end
