@@ -2,6 +2,8 @@
 
 # User
 class User < ApplicationRecord
+  enum role: %i[user admin]
+
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A\S*@\S*\z/ }
@@ -13,8 +15,4 @@ class User < ApplicationRecord
                       confirmation: true
 
   validates_presence_of :name, :password_confirmation
-
-  def admin?
-    ENV.fetch('RAILS_ENV', 'development') == 'development'
-  end
 end
