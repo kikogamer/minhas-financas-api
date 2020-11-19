@@ -51,4 +51,9 @@ RSpec.describe User, type: :model do
     user_params[:password_confirmation] = FFaker::Internet.password
     expect(User.create(user_params)).to_not be_valid
   end
+
+  it 'has default user role' do
+    user = create(:user)
+    expect(user.user?).to be true
+  end
 end

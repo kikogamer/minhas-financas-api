@@ -9,6 +9,6 @@ RSpec.describe Api::V1::UserSerializer, type: :serializer do
   let(:user_json) { Serializers.serialize_object(user) }
 
   it 'has a valid json' do
-    expect(serializer.to_json).to include_json(user_json.except(:password_digest, :created_at, :updated_at))
+    expect(serializer.to_json).to include_json(user_json.except(:password_digest, :created_at, :updated_at, :role))
   end
 end
