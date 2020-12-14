@@ -21,7 +21,8 @@ jobs:
       redis:
         image: 'redis:6.0.9-alpine'
         ports: ["6379:6379"]
-        volumes: ['redis:/var/lib/redis/data']
+        volumes: 
+          - 'redis:/var/lib/redis/data'
         options: --entrypoint redis-server
     steps:
       - uses: actions/checkout@v1
