@@ -19,6 +19,8 @@ services:
     volumes:
       - .:/minhas-financas-api
       - app-gems:/app-gems
+    environment: 
+      REDIS_URL: 'redis://redis:6379/0'
 
   mailcatcher:
     image: tophfr/mailcatcher
